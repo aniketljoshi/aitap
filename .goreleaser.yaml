@@ -1,0 +1,45 @@
+version: 2
+
+project_name: aitap
+
+builds:
+  - main: ./cmd/aitap
+    binary: aitap
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.ShortCommit}}
+
+archives:
+  - formats: ['tar.gz']
+    format_overrides:
+      - goos: windows
+        formats: ['zip']
+
+brews:
+  - repository:
+      owner: aniketjoshi
+      name: homebrew-tap
+    homepage: "https://github.com/aniketjoshi/aitap"
+    description: "mitmproxy for LLMs, but pleasant"
+    license: "MIT"
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
