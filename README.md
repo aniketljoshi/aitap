@@ -1,79 +1,92 @@
 <div align="center">
+  <img src="docs/assets/hero.svg" alt="aitap hero banner" width="100%" />
 
-# 🔍 aitap
+  <h1>aitap</h1>
+  <p><strong>Turn invisible LLM traffic into a living terminal session.</strong></p>
+  <p>
+    aitap is a local-first proxy and terminal UI for inspecting LLM API calls in real time.
+    Watch prompts, streamed output, token counts, latency, and estimated cost without wiring
+    up a hosted dashboard or wrapping your app with extra instrumentation.
+  </p>
 
-### mitmproxy for LLMs, but pleasant.
-
-A single-binary terminal UI that intercepts and inspects LLM API calls in real-time.<br/>
-See every prompt, response, token count, latency, and cost — **without changing your code.**
-
-[![Go Version](https://img.shields.io/github/go-mod/go-version/aniketjoshi/aitap?style=flat-square&color=00ADD8)](https://go.dev/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/aniketjoshi/aitap?style=flat-square&color=orange)](https://github.com/aniketjoshi/aitap/releases)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aniketjoshi/aitap?style=flat-square)](https://goreportcard.com/report/github.com/aniketjoshi/aitap)
-
-<br/>
-
-```
- aitap  :9119  |  4 calls  |  8.2k tokens  |  $0.057
-
-  ~ 1 │ anthropic  │ claude-sonnet-4-...    │  1.2k›890 │  $0.012 │  2.3s
-    2 │ openai     │ gpt-4o                 │   340›210 │  $0.004 │  1.1s
-  ~ 3 │ anthropic  │ claude-sonnet-4-...    │ 4.1k›1.5k │  $0.041 │  4.7s
-  ~ 4 │ ollama     │ llama3:8b              │   890›450 │    free │  3.2s
-```
-
+  <p>
+    <a href="#quickstart">Quickstart</a>
+    &middot;
+    <a href="#why-aitap">Why aitap</a>
+    &middot;
+    <a href="#traffic-modes">Traffic modes</a>
+    &middot;
+    <a href="#development">Development</a>
+    &middot;
+    <a href="CONTRIBUTING.md">Contributing</a>
+  </p>
 </div>
 
----
+> aitap is for the moment when your agent is "doing something weird" and logs are not enough.
+> Put it between your app and the model provider, then inspect every call as it happens.
 
-## Table of Contents
+## Why aitap
 
-- [Quick Start](#quick-start)
-- [What You See](#what-you-see)
-- [Supported Providers](#supported-providers)
-- [Features](#features)
-- [CLI Reference](#cli)
-- [Architecture](#architecture)
-- [Contributing](#contributing)
-- [License](#license)
+| What you get | Why it matters |
+| --- | --- |
+| Live terminal session view | See requests and responses while your app is running |
+| No dashboard required | Everything stays local unless you explicitly export a session |
+| Zero-cert forward proxy mode | Point your SDK at localhost and start inspecting immediately |
+| Streaming-aware parsing | Follow SSE responses while tokens arrive |
+| Cost and token estimates | Spot runaway prompts before they become expensive |
+| Single binary workflow | Easy to install, easy to share, easy to remove |
 
-## Quick Start
+## Quickstart
 
 ### Install
 
 ```bash
-# Homebrew (macOS / Linux)
-brew install aniketjoshi/tap/aitap
-
 # Go install
 go install github.com/aniketjoshi/aitap/cmd/aitap@latest
 
 # Or build from source
-git clone https://github.com/aniketjoshi/aitap.git
-cd aitap && make build
+git clone https://github.com/aniketljoshi/aitap.git
+cd aitap
+go build -o bin/aitap ./cmd/aitap
 ```
 
-### Forward proxy mode (recommended)
-
-Point your SDK's base URL at aitap. No certificates, no MITM — just plain HTTP locally.
+### Run
 
 ```bash
-# Terminal 1 — start aitap
+aitap
+```
+
+By default, aitap listens on `:9119`.
+
+## Traffic Modes
+
+aitap supports two ways to sit in the middle of your traffic.
+
+### 1. Forward proxy mode
+
+This is the recommended mode.
+
+Your SDK points to `localhost`, aitap strips the provider prefix, and the request is forwarded to
+the real upstream API. No TLS interception. No certificate setup.
+
+```bash
+# Terminal 1
 aitap
 
-# Terminal 2 — configure your SDK and run your app
-export OPENAI_BASE_URL=http://localhost:9119/openai/v1       # OpenAI
-export ANTHROPIC_BASE_URL=http://localhost:9119/anthropic     # Anthropic
-export OLLAMA_HOST=http://localhost:9119/ollama               # Ollama
-export GOOGLE_API_BASE=http://localhost:9119/google           # Google
+# Terminal 2
+export OPENAI_BASE_URL=http://localhost:9119/openai/v1
+export ANTHROPIC_BASE_URL=http://localhost:9119/anthropic
+export GOOGLE_API_BASE=http://localhost:9119/google
+export OPENROUTER_BASE_URL=http://localhost:9119/openrouter/api/v1
+export OLLAMA_HOST=http://localhost:9119/ollama
 
 python my_agent.py
 ```
 
-### HTTP proxy mode
+### 2. HTTP proxy mode
 
-Works for HTTP traffic (e.g., local Ollama).
+Use this when your client already supports `HTTP_PROXY`, especially for plain HTTP traffic such as
+local Ollama.
 
 ```bash
 aitap
@@ -83,22 +96,26 @@ export HTTP_PROXY=http://127.0.0.1:9119
 python my_agent.py
 ```
 
+> [!IMPORTANT]
+> HTTPS traffic sent through a CONNECT tunnel is passed through but not inspected. If you want
+> deep request and response visibility for hosted providers, use forward proxy mode.
+
 ## What You See
 
-```
+```text
  aitap  :9119  |  4 calls  |  8.2k tokens  |  $0.057
 
-  ~ 1 │ anthropic  │ claude-sonnet-4-...    │  1.2k›890 │  $0.012 │  2.3s
-    2 │ openai     │ gpt-4o                 │   340›210 │  $0.004 │  1.1s
-  ~ 3 │ anthropic  │ claude-sonnet-4-...    │ 4.1k›1.5k │  $0.041 │  4.7s
-  ~ 4 │ ollama     │ llama3:8b              │   890›450 │    free │  3.2s
+  ~   1 | anthropic | claude-sonnet-4...   |   1.2k>890 | $0.012 |  2.3s
+      2 | openai    | gpt-4o               |    340>210 | $0.004 |  1.1s
+  ~   3 | google    | gemini-2.5-pro       |   4.1k>1.5k| $0.041 |  4.7s
+  ~   4 | ollama    | llama3:8b            |    890>450 |   free |  3.2s
 
-  ── Request ──
+  -- Request --
   system: You are a helpful coding assistant.
-  user: Summarize the latest PR changes and suggest...
+  user: Summarize the latest PR changes and suggest next steps.
 
-  ── Response ──
-  assistant: Based on the diff, here are the key changes:...
+  -- Response --
+  assistant: Here are the key changes and the tradeoffs to watch...
 
   status=200  in=890  out=450  cost=free  latency=3.2s
 
@@ -107,116 +124,93 @@ python my_agent.py
 
 ## Supported Providers
 
-| Provider | Chat | Streaming (SSE) | Cost Tracking |
-| :--- | :---: | :---: | :---: |
-| **OpenAI** | ✅ | ✅ | ✅ |
-| **Anthropic** | ✅ | ✅ | ✅ |
-| **Google** | ✅ | ✅ | ✅ |
-| **Ollama** | ✅ | ✅ | free |
-| **OpenRouter** | ✅ | ✅ | ✅ |
+| Provider | Forward proxy | HTTP proxy detection | Streaming | Estimated cost |
+| --- | --- | --- | --- | --- |
+| OpenAI | Yes | Yes | Yes | Yes |
+| Anthropic | Yes | Yes | Yes | Yes |
+| Google | Yes | Yes | Yes | Yes |
+| OpenRouter | Yes | Yes | Yes | Yes |
+| Ollama | Yes | Yes | Yes | Free or local |
 
-## Features
-
-| | |
-| :--- | :--- |
-| 🔀 **Two proxy modes** | Forward proxy (base URL rewrite, zero certs) or HTTP proxy (env var) |
-| 📦 **Single binary** | No runtime, no dependencies, no cloud account |
-| 🖥️ **Live TUI** | See calls as they happen, expand any to inspect request/response |
-| 🌊 **Streaming support** | Parses SSE chunks in real-time, accumulates tokens and text |
-| 💰 **Cost tracking** | Per-call and session totals with current model pricing |
-| 🔒 **Secret redaction** | API keys, bearer tokens, AWS keys automatically masked in exports |
-| 💾 **Session export** | Save to JSONL for sharing, debugging, or post-analysis |
-| 🎯 **Provider filtering** | Focus on just one provider at a time |
+> [!NOTE]
+> Cost estimates come from the model pricing map in `internal/provider/detect.go`. If provider
+> pricing changes, the estimate may need to be updated in the repo.
 
 ## CLI
 
-```
-aitap                         # start on :9119
-aitap --port 8080             # custom port
-aitap --export session.jsonl  # auto-export on exit
-aitap --redact                # mask secrets in export
-aitap --filter anthropic      # only show Anthropic calls
-aitap --version               # show version
-```
-
-## How It Works
-
-```
-   Your App                aitap (:9119)              LLM API
-  ┌─────────┐   HTTP     ┌──────────────┐   HTTPS   ┌──────────┐
-  │  SDK /   │──────────▶│  intercept   │──────────▶│  OpenAI  │
-  │  Script  │◀──────────│  + display   │◀──────────│  Claude   │
-  └─────────┘            └──────────────┘            └──────────┘
-                               │
-                          ┌────▼────┐
-                          │  Live   │
-                          │  TUI    │
-                          └─────────┘
+```bash
+aitap
+aitap --port 8080
+aitap --export session.jsonl
+aitap --redact
+aitap --filter openai
+aitap --filter anthropic
+aitap --filter google
+aitap --filter openrouter
+aitap --filter ollama
+aitap --version
 ```
 
-**Forward proxy mode** (recommended): Your SDK sends requests to `http://localhost:9119/openai/v1/chat/completions`. aitap strips the provider prefix, forwards to `https://api.openai.com/v1/chat/completions`, and streams the response back while capturing metadata. No certificates needed because your SDK talks HTTP to localhost, and aitap talks HTTPS to the upstream API.
+## What Makes It Different
 
-**HTTP proxy mode**: Set `HTTP_PROXY` env var. Works for plain HTTP traffic like local Ollama. For HTTPS APIs via this mode, traffic passes through without inspection (CONNECT tunnel).
+| Instead of this | aitap does this |
+| --- | --- |
+| Full observability platform setup | Start one local binary and inspect traffic now |
+| SDK-specific logging | Works at the HTTP layer across providers |
+| MITM certificate dance | Uses a cleaner forward-proxy path for local development |
+| Post-hoc JSON dumps | Gives you a live terminal timeline while calls stream |
 
-> [!NOTE]
-> **aitap never stores or transmits your data.** Everything stays in memory unless you explicitly export with `--export`.
+## Project Map
 
-## Architecture
-
-```
+```text
 aitap/
-├── cmd/aitap/           # Entry point and proxy server
-│   ├── main.go          # CLI flags, startup, shutdown
-│   └── proxy.go         # HTTP proxy (forward + HTTP_PROXY modes)
-└── internal/
-    ├── model/           # Data types (Call, Session, Provider)
-    ├── parser/          # Request/response parsing per provider
-    │   ├── parse.go     # Non-streaming parsers
-    │   └── sse.go       # SSE streaming parsers
-    ├── provider/        # Provider detection and pricing
-    ├── redact/          # Secret redaction
-    ├── export/          # JSONL export
-    └── tui/             # Bubble Tea terminal UI
+|- cmd/aitap/            # CLI entrypoint and proxy server
+|- internal/export/      # JSONL export
+|- internal/model/       # Session and call models
+|- internal/parser/      # Request, response, and SSE parsers
+|- internal/provider/    # Provider detection and pricing
+|- internal/redact/      # Secret masking for exports
+|- internal/tui/         # Bubble Tea terminal interface
+`- .github/              # CI and community templates
 ```
-
-## Why Not X?
-
-| Tool | Difference |
-| :--- | :--- |
-| **Langfuse / Phoenix** | Cloud platforms with dashboards. aitap is a local dev tool — no account, no API key. |
-| **llm-interceptor** | Requires mitmproxy + certificate setup. aitap is one binary, zero config. |
-| **llm.log** | SQLite-focused logging. aitap is TUI-first with live streaming inspection. |
-| **LiteLLM** | Full proxy/gateway platform. aitap is read-only, zero config, zero overhead. |
-
-## Contributing
-
-We welcome contributions of all kinds! Please read our [Contributing Guide](CONTRIBUTING.md) to get started.
-
-See also:
-
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Security Policy](SECURITY.md)
 
 ## Development
 
 ```bash
-git clone https://github.com/aniketjoshi/aitap.git
-cd aitap
-make build    # build binary
-make test     # run tests
-make run      # build and run
+# Build
+go build -o bin/aitap ./cmd/aitap
+
+# Run tests
+go test ./...
+
+# Run directly
+go run ./cmd/aitap
 ```
+
+If you prefer the project shortcuts:
+
+```bash
+make build
+make test
+make run
+```
+
+## Contributing
+
+Community docs live in the repo, not in someone's head:
+
+- [Contributing Guide](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security Policy](SECURITY.md)
+- [Support Guide](SUPPORT.md)
+- [Changelog](CHANGELOG.md)
+
+When you are ready to help:
+
+- Open a bug, feature, or help issue from [GitHub issue templates](https://github.com/aniketljoshi/aitap/issues/new/choose)
+- Use the repo's [pull request template](.github/PULL_REQUEST_TEMPLATE.md)
+- Keep changes focused and include tests when behavior changes
 
 ## License
 
-[MIT](LICENSE) — made with ☕ by [Aniket Joshi](https://github.com/aniketjoshi)
-
----
-
-<div align="center">
-
-**[Report Bug](https://github.com/aniketjoshi/aitap/issues/new?template=bug_report.yml)** · **[Request Feature](https://github.com/aniketjoshi/aitap/issues/new?template=feature_request.yml)** · **[Discussions](https://github.com/aniketjoshi/aitap/discussions)**
-
-If aitap helps your workflow, consider giving it a ⭐
-
-</div>
+This project is licensed under the [MIT License](LICENSE).

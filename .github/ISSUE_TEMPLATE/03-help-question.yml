@@ -1,0 +1,57 @@
+name: Help or setup question
+description: Ask for help with local setup, proxy routing, provider configuration, or contribution workflow.
+title: "[help] "
+labels:
+  - question
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Happy to help. The more concrete your current setup is, the faster someone can unblock you.
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to do?
+      placeholder: I want to point the OpenAI Python SDK at aitap in forward proxy mode.
+    validations:
+      required: true
+  - type: textarea
+    id: stuck
+    attributes:
+      label: Where are you stuck?
+      placeholder: Requests still go directly to the upstream API and nothing appears in the TUI.
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you already tried?
+      placeholder: I started aitap, set OPENAI_BASE_URL, and verified my app still works without aitap.
+  - type: input
+    id: provider
+    attributes:
+      label: Provider or SDK
+      placeholder: OpenAI Python SDK, Anthropic TS SDK, local Ollama, curl, etc.
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: macOS 14, zsh, Go 1.22 or Windows 11, PowerShell
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant commands, logs, or config
+      description: Redact secrets before pasting.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-flight checklist
+      options:
+        - label: I checked the README and support docs first.
+          required: true
+        - label: I removed or redacted secrets.
+          required: true
+        - label: I agree to follow this project's Code of Conduct.
+          required: true

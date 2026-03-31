@@ -1,183 +1,184 @@
 # Contributing to aitap
 
-First off, thank you for considering contributing to aitap! 🎉
+Thanks for wanting to help build aitap.
 
-Every contribution matters — whether it's fixing a typo, adding a provider, improving the TUI, or reporting a bug. This guide will help you get started.
+This project is still small enough that a thoughtful issue, a crisp bug report, or a docs fix can
+change the product quickly. You do not need to land a giant feature to make a meaningful
+contribution.
 
-## Table of Contents
+Before participating, please read the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-- [Code of Conduct](#code-of-conduct)
-- [Getting Started](#getting-started)
-- [How to Contribute](#how-to-contribute)
-- [Development Workflow](#development-workflow)
-- [Code Style](#code-style)
-- [Project Structure](#project-structure)
-- [Adding a New Provider](#adding-a-new-provider)
-- [Commit Messages](#commit-messages)
-- [Pull Request Process](#pull-request-process)
+## Good First Contributions
 
-## Code of Conduct
+These are all valuable:
 
-This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [aniket@aitap.dev](mailto:aniket@aitap.dev).
+- Tighten request or response parsing for a provider
+- Improve streaming or token accounting tests
+- Fix edge cases in export or redaction
+- Polish TUI readability and navigation
+- Improve docs, examples, or onboarding
+- Add missing provider coverage where the proxy shape is already understood
 
-## Getting Started
+## Before You Start
+
+For small fixes, feel free to open a PR directly.
+
+For larger changes, please open an issue first so we can align on scope. This helps avoid duplicate
+work and makes reviews faster.
+
+Useful starting points:
+
+- [Support Guide](SUPPORT.md)
+- [Security Policy](SECURITY.md)
+- [GitHub issue templates](https://github.com/aniketljoshi/aitap/issues/new/choose)
+
+## Local Setup
 
 ### Prerequisites
 
-- Go 1.22 or later
+- Go 1.22 or newer
 - Git
 
-### Setup
+### Clone and build
 
 ```bash
-git clone https://github.com/aniketjoshi/aitap.git
+git clone https://github.com/aniketljoshi/aitap.git
 cd aitap
+go build -o bin/aitap ./cmd/aitap
+```
+
+### Run tests
+
+```bash
+go test ./...
+```
+
+### Run locally
+
+```bash
+go run ./cmd/aitap
+```
+
+If you already use `make`, the repo includes:
+
+```bash
 make build
 make test
-```
-
-### Running locally
-
-```bash
-# Build and run
 make run
-
-# Or build then run separately
-make build
-./bin/aitap
 ```
-
-## How to contribute
-
-### Reporting bugs
-
-Found a bug? [Open an issue](https://github.com/aniketjoshi/aitap/issues/new?template=bug_report.yml) with:
-
-- What you expected to happen
-- What actually happened
-- Steps to reproduce
-- Your OS, Go version, and aitap version (`aitap --version`)
-
-### Suggesting features
-
-Have an idea? [Open a feature request](https://github.com/aniketjoshi/aitap/issues/new?template=feature_request.yml). Before creating one, please check if a similar request already exists.
-
-### Submitting code
-
-1. **Fork** the repo and create a branch from `main`
-2. **Name your branch** descriptively: `fix/streaming-parse-error`, `feat/azure-openai-support`, `docs/update-readme`
-3. **Write tests** for any new functionality
-4. **Run the full check** before submitting:
-
-```bash
-make test       # run tests
-make build      # verify build
-```
-
-5. **Open a Pull Request** using our [PR template](.github/PULL_REQUEST_TEMPLATE.md)
 
 ## Development Workflow
 
-```bash
-# 1. Fork and clone
-git clone https://github.com/<your-username>/aitap.git
-cd aitap
+1. Fork the repo and create a focused branch from `main`.
+2. Make the smallest change that fully solves the problem.
+3. Add or update tests when behavior changes.
+4. Run `go test ./...`.
+5. Open a pull request using the repo template.
 
-# 2. Create a feature branch
-git checkout -b feat/my-awesome-feature
+Recommended branch name patterns:
 
-# 3. Make your changes, write tests
+- `fix/sse-parser-edge-case`
+- `feat/openrouter-pricing`
+- `docs/readme-quickstart`
+- `refactor/proxy-error-handling`
 
-# 4. Run checks
-make test
-make build
+## Project Conventions
 
-# 5. Commit with a descriptive message
-git commit -m "feat: add Azure OpenAI provider support"
+### Code style
 
-# 6. Push and open a PR
-git push origin feat/my-awesome-feature
-```
+- Follow standard Go formatting with `gofmt`.
+- Prefer small, explicit functions over clever abstractions.
+- Keep provider-specific logic easy to trace.
+- Add comments only when behavior is not obvious from the code.
 
-## Code Style
+### Testing
 
-- Follow standard Go conventions (`gofmt`, `go vet`)
-- Keep functions small and focused
-- Add comments for non-obvious logic
-- Use descriptive variable names
-- Run `gofmt -s -w .` before committing
+Please include tests for:
 
-## Project Structure
+- New request or response parsing behavior
+- Streaming edge cases
+- Provider detection changes
+- Redaction or export behavior
 
-```
-aitap/
-  cmd/aitap/         # Entry point and proxy server
-    main.go          # CLI flags, startup, shutdown
-    proxy.go         # HTTP proxy (forward + HTTP_PROXY modes)
-  internal/
-    model/           # Data types (Call, Session, Provider)
-    parser/          # Request/response parsing per provider
-      parse.go       # Non-streaming parsers
-      sse.go         # SSE streaming parsers
-    provider/        # Provider detection and pricing
-    redact/          # Secret redaction
-    export/          # JSONL export
-    tui/             # Bubble Tea terminal UI
-```
+If your change is intentionally hard to test, explain why in the PR.
 
-## Adding a New Provider
+### Commits
 
-1. Add the provider constant in `internal/model/call.go`
-2. Add host detection in `internal/provider/detect.go`
-3. Add pricing in `internal/provider/detect.go`
-4. Add request/response parser in `internal/parser/parse.go`
-5. Add SSE parser in `internal/parser/sse.go`
-6. Add the upstream route in `cmd/aitap/proxy.go`
-7. Add tests for all the above
-8. Update the README provider table
+Conventional Commits are preferred:
 
-## Adding Pricing for New Models
+- `feat: add openrouter forward proxy example`
+- `fix: handle empty SSE chunk gracefully`
+- `docs: refresh contributing guide`
+- `test: cover redaction fallback`
 
-Edit `internal/provider/detect.go` and add to the `Pricing` map. Use per-1M-token pricing from the provider's official page.
+## Areas That Benefit From Extra Care
 
-## Commit Messages
+### Provider and pricing changes
 
-We follow [Conventional Commits](https://www.conventionalcommits.org/). This makes changelogs and release notes easier to generate.
+If you update provider support:
 
-| Prefix | Purpose |
-| :--- | :--- |
-| `feat:` | New feature |
-| `fix:` | Bug fix |
-| `docs:` | Documentation only |
-| `test:` | Adding or updating tests |
-| `refactor:` | Code change that neither fixes a bug nor adds a feature |
-| `chore:` | Build process, CI, or tooling changes |
+- Keep `internal/provider/detect.go` in sync
+- Update request or response parsing as needed
+- Add tests near the changed parser or provider logic
+- Refresh provider details in [README.md](README.md)
 
-**Examples:**
+### Proxy behavior changes
 
-```
-feat: add Azure OpenAI provider support
-fix: handle empty SSE chunks in streaming parser
-docs: update README with Google provider setup
-test: add coverage for redaction edge cases
-```
+If you touch `cmd/aitap/proxy.go`, please test both:
 
-## Pull Request Process
+- Forward proxy mode
+- HTTP proxy mode
 
-1. Ensure your branch is up to date with `main`
-2. Fill out the [PR template](.github/PULL_REQUEST_TEMPLATE.md) completely
-3. Ensure all tests pass (`make test`)
-4. Keep PRs focused — one feature or fix per PR
-5. Update documentation if behavior changes
-6. Be patient — reviews may take a few days
+Document any known limitation clearly if the behavior is provider-specific.
 
-> [!TIP]
-> Small, focused PRs are reviewed faster than large ones.
+### TUI changes
 
-## Questions?
+The terminal UI should stay readable on smaller terminal sizes and under active streaming load.
+If you adjust layout or key handling, mention the UX impact in the PR.
 
-Open a [discussion](https://github.com/aniketjoshi/aitap/discussions) or reach out in an issue. No question is too small.
+## Pull Request Checklist
 
----
+Before opening a PR, make sure you can say yes to most of these:
 
-Thank you for helping make aitap better!
+- I read the relevant docs for the area I changed
+- I kept the change focused
+- I added or updated tests when behavior changed
+- I ran `go test ./...`
+- I updated docs if the user-facing workflow changed
+- I used clear commit and PR descriptions
+
+## Review Expectations
+
+Reviews focus on correctness, clarity, and maintenance cost.
+
+That usually means reviewers will look for:
+
+- Behavioral regressions
+- Missing tests
+- Unclear naming or control flow
+- Docs drift
+- Hidden complexity in proxy and parser logic
+
+Small, focused PRs get merged much faster than broad refactors.
+
+## Reporting Bugs and Requesting Features
+
+Please use the issue templates so reports arrive with the context needed to reproduce or evaluate
+them:
+
+- Bug report
+- Feature request
+- Help or setup question
+
+If you are reporting a security issue, do not open a public issue. Follow the instructions in
+[SECURITY.md](SECURITY.md).
+
+## Questions
+
+If you are unsure where to start, open a help issue and describe:
+
+- What you are trying to do
+- What you already checked
+- Where you got stuck
+
+That is enough to start a productive conversation.
