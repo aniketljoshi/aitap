@@ -1,0 +1,110 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">aitap TUI preview</title>
+  <desc id="desc">Preview image of the redesigned aitap terminal UI.</desc>
+  <defs>
+    <linearGradient id="bg" x1="86" y1="62" x2="1518" y2="932" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08121F"/>
+      <stop offset="0.58" stop-color="#0D1826"/>
+      <stop offset="1" stop-color="#091523"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#101D2E"/>
+      <stop offset="1" stop-color="#0C1725"/>
+    </linearGradient>
+    <linearGradient id="callCard" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#13283D"/>
+      <stop offset="1" stop-color="#112234"/>
+    </linearGradient>
+    <filter id="shadow" x="34" y="46" width="1532" height="908" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="16"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.00392157 0 0 0 0 0.027451 0 0 0 0 0.0862745 0 0 0 0.32 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_0"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_0" result="shape"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="60" width="1460" height="860" rx="34" fill="url(#bg)" stroke="#1A3148"/>
+  </g>
+
+  <rect x="120" y="118" width="84" height="36" rx="18" fill="#0E2434" stroke="#2C4E73"/>
+  <text x="162" y="142" text-anchor="middle" fill="#F3F8FC" font-size="20" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">aitap</text>
+  <text x="120" y="196" fill="#B7C7D9" font-size="26" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">local-first llm traffic inspector</text>
+
+  <rect x="1064" y="114" width="86" height="34" rx="17" fill="#152A3C"/>
+  <text x="1107" y="137" text-anchor="middle" fill="#59C8F7" font-size="18" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">:9119</text>
+  <rect x="1166" y="114" width="110" height="34" rx="17" fill="#143126"/>
+  <text x="1221" y="137" text-anchor="middle" fill="#66E3B3" font-size="18" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">4 calls</text>
+  <rect x="1292" y="114" width="118" height="34" rx="17" fill="#2A2312"/>
+  <text x="1351" y="137" text-anchor="middle" fill="#FFD089" font-size="18" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">8.5k tok</text>
+  <rect x="1426" y="114" width="82" height="34" rx="17" fill="#153126"/>
+  <text x="1467" y="137" text-anchor="middle" fill="#90F0C7" font-size="18" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">$0.036</text>
+
+  <text x="120" y="244" fill="#6E879F" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">j/k navigate   enter inspect   g/G jump   q quit</text>
+
+  <rect x="120" y="280" width="606" height="572" rx="28" fill="url(#panel)" stroke="#1D344C"/>
+  <rect x="754" y="280" width="656" height="572" rx="28" fill="url(#panel)" stroke="#2C4E73"/>
+
+  <text x="154" y="332" fill="#F3F8FC" font-size="26" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Session Flow</text>
+  <text x="652" y="332" text-anchor="end" fill="#6E879F" font-size="22" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">4 captured</text>
+
+  <rect x="154" y="362" width="538" height="110" rx="22" fill="url(#callCard)" stroke="#66E3B3" stroke-width="2"/>
+  <rect x="178" y="388" width="46" height="28" rx="14" fill="#12302C"/>
+  <text x="201" y="408" text-anchor="middle" fill="#A5F1D0" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">#1</text>
+  <rect x="234" y="388" width="138" height="28" rx="14" fill="#12302C"/>
+  <text x="303" y="408" text-anchor="middle" fill="#A5F1D0" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">ANTHROPIC</text>
+  <rect x="592" y="388" width="76" height="28" rx="14" fill="#143126"/>
+  <text x="630" y="408" text-anchor="middle" fill="#90F0C7" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">STREAM</text>
+  <text x="178" y="444" fill="#F3F8FC" font-size="24" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">claude-sonnet-4-20250514</text>
+  <text x="178" y="476" fill="#B7C7D9" font-size="20" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Summarize the latest PR changes and call out any risks.</text>
+  <text x="178" y="522" fill="#FFD089" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">STATUS 200</text>
+  <text x="312" y="522" fill="#FFD089" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">TOK 1.8k&gt;710</text>
+  <text x="456" y="522" fill="#59C8F7" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">LAT 2.3s</text>
+  <text x="570" y="522" fill="#90F0C7" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">COST $0.016</text>
+
+  <rect x="154" y="496" width="538" height="92" rx="22" fill="#101A28" stroke="#1D344C"/>
+  <text x="178" y="528" fill="#59C8F7" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">#2   OPENAI</text>
+  <text x="178" y="562" fill="#F3F8FC" font-size="22" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">gpt-4.1</text>
+  <text x="178" y="594" fill="#B7C7D9" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Generate a release summary for this sprint.</text>
+
+  <rect x="154" y="610" width="538" height="92" rx="22" fill="#101A28" stroke="#1D344C"/>
+  <text x="178" y="642" fill="#FFB35C" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">#3   GOOGLE</text>
+  <text x="178" y="676" fill="#F3F8FC" font-size="22" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">gemini-2.5-pro</text>
+  <text x="178" y="708" fill="#B7C7D9" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Compare all open issues and group them by root cause.</text>
+
+  <rect x="154" y="724" width="538" height="92" rx="22" fill="#101A28" stroke="#1D344C"/>
+  <text x="178" y="756" fill="#A78BFA" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">#4   OPENROUTER</text>
+  <text x="178" y="790" fill="#F3F8FC" font-size="22" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">openai/gpt-4.1-mini</text>
+  <text x="178" y="822" fill="#B7C7D9" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Draft the GitHub description, topics, and release notes.</text>
+
+  <text x="786" y="332" fill="#F3F8FC" font-size="28" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">openai/gpt-4.1-mini</text>
+  <rect x="1244" y="308" width="138" height="30" rx="15" fill="#1A1832"/>
+  <text x="1313" y="329" text-anchor="middle" fill="#E3D7FF" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">OPENROUTER</text>
+  <text x="786" y="364" fill="#6E879F" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">api/v1/chat/completions</text>
+
+  <rect x="786" y="398" width="592" height="72" rx="20" fill="#101D2E" stroke="#1D344C"/>
+  <text x="814" y="432" fill="#B7C7D9" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">STATUS 200   STREAM no   MSGS 1   TOOLS 0</text>
+  <text x="814" y="462" fill="#B7C7D9" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">INPUT 890   OUTPUT 350   LATENCY 1.6s   COST $0.0021</text>
+
+  <rect x="786" y="494" width="286" height="236" rx="22" fill="#101D2E" stroke="#1D344C"/>
+  <rect x="1092" y="494" width="286" height="236" rx="22" fill="#101D2E" stroke="#1D344C"/>
+  <text x="814" y="532" fill="#6E879F" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">REQUEST</text>
+  <rect x="814" y="556" width="72" height="26" rx="13" fill="#152A3C"/>
+  <text x="850" y="574" text-anchor="middle" fill="#59C8F7" font-size="14" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">USER</text>
+  <text x="814" y="618" fill="#F3F8FC" font-size="20" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Draft the GitHub</text>
+  <text x="814" y="648" fill="#F3F8FC" font-size="20" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">description, topics,</text>
+  <text x="814" y="678" fill="#F3F8FC" font-size="20" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">and release notes.</text>
+
+  <text x="1120" y="532" fill="#6E879F" font-size="16" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">RESPONSE</text>
+  <text x="1120" y="590" fill="#F3F8FC" font-size="20" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Use a short description,</text>
+  <text x="1120" y="620" fill="#F3F8FC" font-size="20" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">precise topics, and a</text>
+  <text x="1120" y="650" fill="#F3F8FC" font-size="20" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">premium terminal-first</text>
+  <text x="1120" y="680" fill="#F3F8FC" font-size="20" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">positioning statement.</text>
+
+  <text x="120" y="894" fill="#6E879F" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">bubble tea tui   |   stream-aware parsing   |   local-first inspection</text>
+  <text x="1478" y="894" text-anchor="end" fill="#66E3B3" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">selected #4 of 4</text>
+</svg>
