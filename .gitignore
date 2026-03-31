@@ -4,5 +4,23 @@ dist/
 *.log
 *.jsonl
 .DS_Store
-
 .claude
+
+# VHS output (generated, not committed — attach to releases/README manually)
+demo.gif
+demo.webm
+demo-short.gif
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Old binaries
+aitap-old.exe
