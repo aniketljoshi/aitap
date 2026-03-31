@@ -1,0 +1,82 @@
+name: Bug report
+description: Report a reproducible problem in the proxy, parser, TUI, export flow, or docs.
+title: "[bug] "
+labels:
+  - bug
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this.
+
+        Please share enough detail for someone else to reproduce the behavior without guessing.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: A clear summary of the bug.
+      placeholder: aitap shows a completed call, but the streamed response text is empty.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Share the exact sequence needed to trigger the issue.
+      placeholder: |
+        1. Start aitap with ...
+        2. Point the SDK at ...
+        3. Send a request to ...
+        4. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+      placeholder: The streamed response should be visible in the detail pane.
+    validations:
+      required: true
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Provider
+      options:
+        - OpenAI
+        - Anthropic
+        - Google
+        - OpenRouter
+        - Ollama
+        - Other / unsure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: aitap version
+      description: Output of `aitap --version`, release tag, or commit if known.
+      placeholder: aitap dev (abc1234)
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, shell, Go version, and anything else relevant.
+      placeholder: Windows 11, PowerShell, Go 1.22.4
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, screenshots, or sample payloads
+      description: Redact secrets before pasting.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-flight checklist
+      options:
+        - label: I searched for existing issues before opening this one.
+          required: true
+        - label: I removed or redacted sensitive data.
+          required: true
+        - label: I agree to follow this project's Code of Conduct.
+          required: true
