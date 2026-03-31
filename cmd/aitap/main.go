@@ -24,7 +24,8 @@ func main() {
 	port := flag.Int("port", 9119, "Proxy listen port")
 	exportPath := flag.String("export", "", "Auto-export session to JSONL on exit")
 	redactFlag := flag.Bool("redact", false, "Redact secrets in exports")
-	filterProvider := flag.String("filter", "", "Only show calls to this provider (openai, anthropic, google, ollama)")
+	filterProvider := flag.String("filter", "", "Only show calls to this provider (openai, anthropic, google, openrouter, ollama)")
+	demoMode := flag.Bool("demo", false, "Launch the TUI with realistic sample traffic instead of starting the proxy")
 	showVersion := flag.Bool("version", false, "Show version")
 	flag.Parse()
 
@@ -36,12 +37,16 @@ func main() {
 	session := model.NewSession()
 	callChan := make(chan *model.Call, 100)
 
-	// Start proxy in background
-	go func() {
-		if err := startProxy(*port, callChan, *filterProvider); err != nil {
-			log.Fatalf("Proxy error: %v", err)
-		}
-	}()
+	if *demoMode {
+		startDemoFeed(callChan, *filterProvider)
+	} else {
+		// Start proxy in background
+		go func() {
+			if err := startProxy(*port, callChan, *filterProvider); err != nil {
+				log.Fatalf("Proxy error: %v", err)
+			}
+		}()
+	}
 
 	// Start TUI
 	p := tea.NewProgram(
