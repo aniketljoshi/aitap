@@ -27,13 +27,21 @@
       <stop stop-color="#FFB05B"/>
       <stop offset="1" stop-color="#F77D65"/>
     </linearGradient>
+    <linearGradient id="row" x1="978" y1="252" x2="1442" y2="318" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17324A"/>
+      <stop offset="1" stop-color="#12273B"/>
+    </linearGradient>
+    <linearGradient id="rowAlt" x1="978" y1="332" x2="1442" y2="398" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#13283D"/>
+      <stop offset="1" stop-color="#0D1F31"/>
+    </linearGradient>
     <filter id="shadow" x="892" y="68" width="652" height="682" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
       <feOffset dy="18"/>
-      <feGaussianBlur stdDeviation="22"/>
+      <feGaussianBlur stdDeviation="12"/>
       <feComposite in2="hardAlpha" operator="out"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 0.00392157 0 0 0 0 0.027451 0 0 0 0 0.0862745 0 0 0 0.42 0"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.00392157 0 0 0 0 0.027451 0 0 0 0 0.0862745 0 0 0 0.28 0"/>
       <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_0"/>
       <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_0" result="shape"/>
     </filter>
@@ -79,53 +87,60 @@
   <text x="120" y="776" fill="#D9E6F2" font-size="24" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">No certs. No dashboard. No mystery.</text>
 
   <g filter="url(#shadow)">
-    <rect x="936" y="104" width="548" height="592" rx="30" fill="url(#card)" stroke="#21384E"/>
-    <rect x="948" y="116" width="524" height="1" fill="#335873" fill-opacity="0.7"/>
+    <rect x="936" y="104" width="548" height="592" rx="30" fill="url(#card)" stroke="#2A4C69" stroke-width="1.5"/>
+    <rect x="948" y="116" width="524" height="568" rx="24" stroke="#173249"/>
+    <rect x="949" y="117" width="522" height="40" rx="20" fill="#DDF7FF" fill-opacity="0.025"/>
+    <rect x="948" y="116" width="524" height="1" fill="#4A7393" fill-opacity="0.55"/>
     <rect x="936" y="104" width="548" height="60" rx="30" fill="#102235"/>
     <path d="M936 134C936 117.431 949.431 104 966 104H1454C1470.57 104 1484 117.431 1484 134V164H936V134Z" fill="#102235"/>
+    <rect x="978" y="178" width="464" height="1" fill="#1C3950"/>
     <circle cx="974" cy="134" r="7" fill="#FF6B6B"/>
     <circle cx="998" cy="134" r="7" fill="#FFD166"/>
     <circle cx="1022" cy="134" r="7" fill="#61E5A7"/>
-    <text x="1062" y="141" fill="#B7C7D9" font-size="20" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">session live</text>
-    <rect x="1392" y="122" width="64" height="24" rx="12" fill="#143247" stroke="#28506B"/>
-    <text x="1424" y="139" text-anchor="middle" fill="#8FDDBA" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">LIVE</text>
+    <text x="1062" y="141" fill="#D7E6F5" font-size="20" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">Session Live</text>
+    <rect x="1386" y="120" width="72" height="28" rx="14" fill="#13384B" stroke="#2A5D76"/>
+    <text x="1422" y="139" text-anchor="middle" fill="#8FE7C6" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">LIVE</text>
 
-    <text x="978" y="196" fill="#89A4BD" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">local proxy :9119</text>
-    <text x="978" y="224" fill="#EAF7F0" font-size="20" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">4 calls | 8.2k tokens | $0.057</text>
+    <text x="978" y="202" fill="#7FA0BC" font-size="14" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">LOCAL PROXY :9119</text>
+    <text x="978" y="232" fill="#F1F8FC" font-size="24" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">4 calls | 8.2k tokens | $0.057</text>
 
-    <rect x="978" y="252" width="464" height="66" rx="18" fill="#13283D"/>
-    <rect x="978" y="332" width="464" height="66" rx="18" fill="#0D1D2E"/>
-    <rect x="978" y="412" width="464" height="66" rx="18" fill="#13283D"/>
-    <rect x="978" y="492" width="464" height="66" rx="18" fill="#0D1D2E"/>
+    <rect x="978" y="252" width="464" height="66" rx="18" fill="url(#row)" stroke="#1B3B54"/>
+    <rect x="978" y="332" width="464" height="66" rx="18" fill="url(#rowAlt)" stroke="#173249"/>
+    <rect x="978" y="412" width="464" height="66" rx="18" fill="url(#row)" stroke="#1B3B54"/>
+    <rect x="978" y="492" width="464" height="66" rx="18" fill="url(#rowAlt)" stroke="#173249"/>
 
     <circle cx="1008" cy="285" r="5" fill="#61E5A7"/>
     <circle cx="1008" cy="365" r="5" fill="#4CC9F0"/>
     <circle cx="1008" cy="445" r="5" fill="#FFB05B"/>
     <circle cx="1008" cy="525" r="5" fill="#B7C7D9"/>
 
-    <text x="1024" y="281" fill="#61E5A7" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">~1</text>
-    <text x="1068" y="281" fill="#8FDDBA" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">anthropic</text>
-    <text x="1068" y="302" fill="#DDE7F2" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">claude-sonnet-4</text>
-    <text x="1418" y="292" text-anchor="end" fill="#9FE7C0" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">$0.012</text>
+    <text x="1024" y="281" fill="#61E5A7" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">~1</text>
+    <text x="1068" y="281" fill="#8FDDBA" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">ANTHROPIC</text>
+    <text x="1068" y="303" fill="#F0F7FC" font-size="17" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">claude-sonnet-4</text>
+    <rect x="1354" y="267" width="70" height="26" rx="13" fill="#163A3E" stroke="#255E62"/>
+    <text x="1389" y="284" text-anchor="middle" fill="#9FE7C0" font-size="14" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">$0.012</text>
 
-    <text x="1024" y="361" fill="#4CC9F0" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">2</text>
-    <text x="1068" y="361" fill="#8ED6F2" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">openai</text>
-    <text x="1068" y="382" fill="#DDE7F2" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">gpt-4o</text>
-    <text x="1418" y="372" text-anchor="end" fill="#9FE7C0" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">$0.004</text>
+    <text x="1024" y="361" fill="#4CC9F0" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">2</text>
+    <text x="1068" y="361" fill="#8ED6F2" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">OPENAI</text>
+    <text x="1068" y="383" fill="#F0F7FC" font-size="17" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">gpt-4o</text>
+    <rect x="1354" y="347" width="70" height="26" rx="13" fill="#163A3E" stroke="#255E62"/>
+    <text x="1389" y="364" text-anchor="middle" fill="#9FE7C0" font-size="14" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">$0.004</text>
 
-    <text x="1024" y="441" fill="#FFB05B" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">~3</text>
-    <text x="1068" y="441" fill="#F6C38E" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">google</text>
-    <text x="1068" y="462" fill="#DDE7F2" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">gemini-2.5-pro</text>
-    <text x="1418" y="452" text-anchor="end" fill="#9FE7C0" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">$0.041</text>
+    <text x="1024" y="441" fill="#FFB05B" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">~3</text>
+    <text x="1068" y="441" fill="#F6C38E" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">GOOGLE</text>
+    <text x="1068" y="463" fill="#F0F7FC" font-size="17" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">gemini-2.5-pro</text>
+    <rect x="1354" y="427" width="70" height="26" rx="13" fill="#163A3E" stroke="#255E62"/>
+    <text x="1389" y="444" text-anchor="middle" fill="#9FE7C0" font-size="14" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">$0.041</text>
 
-    <text x="1024" y="521" fill="#B7C7D9" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">~4</text>
-    <text x="1068" y="521" fill="#C9D5E2" font-size="14" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">ollama</text>
-    <text x="1068" y="542" fill="#DDE7F2" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">llama3:8b</text>
-    <text x="1418" y="532" text-anchor="end" fill="#DDE7F2" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">free</text>
+    <text x="1024" y="521" fill="#B7C7D9" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">~4</text>
+    <text x="1068" y="521" fill="#C9D5E2" font-size="13" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">OLLAMA</text>
+    <text x="1068" y="543" fill="#F0F7FC" font-size="17" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">llama3:8b</text>
+    <rect x="1362" y="507" width="62" height="26" rx="13" fill="#153146" stroke="#254A67"/>
+    <text x="1393" y="524" text-anchor="middle" fill="#DDE7F2" font-size="14" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">FREE</text>
 
-    <rect x="978" y="576" width="464" height="88" rx="18" fill="#0B1826" stroke="#183246"/>
-    <text x="1008" y="607" fill="#8AB4FF" font-size="16" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">request</text>
-    <text x="1008" y="637" fill="#DDE7F2" font-size="15" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">user: Summarize latest PR changes.</text>
+    <rect x="978" y="576" width="464" height="88" rx="18" fill="#0B1826" stroke="#214462"/>
+    <text x="1008" y="607" fill="#8AB4FF" font-size="14" font-weight="700" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">REQUEST</text>
+    <text x="1008" y="637" fill="#E6EFF7" font-size="15" font-weight="600" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">user: Summarize latest PR changes.</text>
 
     <rect x="978" y="680" width="214" height="8" rx="4" fill="url(#lineA)"/>
     <rect x="1210" y="680" width="130" height="8" rx="4" fill="url(#lineB)"/>
