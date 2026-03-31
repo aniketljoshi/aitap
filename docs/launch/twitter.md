@@ -4,7 +4,7 @@
 
 ## Main launch tweet
 
-I built mitmproxy for LLMs.
+I built a local traffic inspector for LLMs.
 
 One binary. Zero config. Beautiful TUI.
 
@@ -43,7 +43,7 @@ What you see:
 
 Built with:
 
-- Go (single static binary)
+- Go (single binary)
 - Bubble Tea (terminal UI)
 - Lipgloss (styling)
 - Zero runtime dependencies

@@ -42,7 +42,7 @@
 
 ```bash
 # Go install
-go install github.com/aniketjoshi/aitap/cmd/aitap@latest
+go install github.com/aniketljoshi/aitap/cmd/aitap@latest
 
 # Or build from source
 git clone https://github.com/aniketljoshi/aitap.git

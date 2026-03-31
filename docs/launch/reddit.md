@@ -117,7 +117,7 @@ and displays them in a Bubble Tea terminal UI.
   content deltas, Anthropic message_start/content_block_delta, Ollama NDJSON, Google cumulative
   usageMetadata)
 - Provider-aware: detects provider from path prefix or hostname, routes to correct parser
-- Zero external runtime deps: single static binary via `CGO_ENABLED=0`
+- Zero external runtime deps: single binary, pure Go build
 - Bubble Tea + Lipgloss for the TUI with provider color coding
 
 **What I'd love feedback on:**

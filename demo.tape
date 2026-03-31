@@ -1,17 +1,15 @@
-# VHS tape file — records a terminal GIF of aitap in demo mode.
+# VHS tape file - records a terminal GIF of aitap in demo mode.
 #
 # Install VHS:   go install github.com/charmbracelet/vhs@latest
 # Record:        vhs demo.tape
-# Output:        demo.gif (in current directory)
+# Output:        demo.gif and demo.webm
 #
-# The recording uses `aitap --demo` so no real API calls are made.
-# It shows realistic sample traffic from multiple providers.
+# The recording uses `go run ./cmd/aitap --demo` so no real API calls are made.
+# It also works from a fresh checkout without assuming a prebuilt binary on PATH.
 
-# --- Output settings ---
 Output demo.gif
 Output demo.webm
 
-# --- Terminal settings ---
 Set FontFamily "JetBrains Mono"
 Set FontSize 14
 Set Width 1200
@@ -24,92 +22,54 @@ Set WindowBarSize 40
 Set CursorBlink false
 Set PlaybackSpeed 0.75
 
-# --- Build and run ---
-Type "go build -o bin/aitap ./cmd/aitap && clear"
+# Warm the Go build cache and show the current version.
+Type "go run ./cmd/aitap --version"
 Enter
-Sleep 1s
+Sleep 2s
 
-# Show version
-Type "bin/aitap --version"
-Enter
-Sleep 1.5s
-
-# Clear and start demo mode
-Type "clear"
-Enter
-Sleep 500ms
-
-Type "bin/aitap --demo"
+# Start demo mode.
+Type "go run ./cmd/aitap --demo"
 Enter
 
-# Wait for the TUI to render and calls to stream in
-Sleep 2s
+# Wait for the TUI to render and all sample calls to arrive.
+Sleep 11s
 
-# First call appears (Anthropic)
-Sleep 2s
-
-# Second call (OpenAI)
-Sleep 2s
-
-# Third call (Google)
-Sleep 2s
-
-# Fourth call (OpenRouter)
-Sleep 2s
-
-# Fifth call (Ollama)
-Sleep 2s
-
-# Navigate up to first call
+# Inspect the first call.
 Type "g"
-Sleep 500ms
-
-# Expand the Anthropic call detail
+Sleep 400ms
 Enter
 Sleep 3s
-
-# Close detail
 Enter
 Sleep 500ms
 
-# Move down to OpenAI call
+# Move to the second call.
 Type "j"
 Sleep 300ms
-
-# Expand OpenAI call detail
 Enter
 Sleep 3s
-
-# Close detail
 Enter
 Sleep 500ms
 
-# Move to Google call
+# Move to the third call.
 Type "j"
 Sleep 300ms
-
 Enter
 Sleep 3s
-
-# Close
 Enter
 Sleep 500ms
 
-# Jump to last call (Ollama)
+# Jump to the last call.
 Type "G"
 Sleep 300ms
-
 Enter
 Sleep 3s
-
-# Close and pause on the full list view
 Enter
 Sleep 500ms
 
-# Jump back to top for a clean final frame
+# Return to the top for a clean last frame.
 Type "g"
 Sleep 2s
 
-# Quit
+# Quit cleanly.
 Type "q"
 Sleep 1s

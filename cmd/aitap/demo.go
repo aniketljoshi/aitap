@@ -4,7 +4,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aniketjoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/model"
 )
 
 func startDemoFeed(callChan chan<- *model.Call, filterProvider string) {

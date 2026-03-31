@@ -3,7 +3,7 @@ package parser
 import (
 	"testing"
 
-	"github.com/aniketjoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/model"
 )
 
 func TestParseOpenAISSE(t *testing.T) {

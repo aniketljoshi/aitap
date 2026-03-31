@@ -2,7 +2,7 @@
 
 ## Title
 
-Show HN: aitap -- mitmproxy for LLMs, but pleasant (single Go binary, terminal UI)
+Show HN: aitap -- a local traffic inspector for LLMs with a terminal UI
 
 ## URL
 
@@ -45,7 +45,7 @@ no certificates.
 - No data leaves your machine unless you explicitly export
 - No eval, no scoring, no replay — just inspection
 
-**Stack:** Go, Bubble Tea (TUI), zero external dependencies at runtime.
+**Stack:** Go, Bubble Tea (TUI), single binary, zero runtime dependencies.
 
 Try it: `go install github.com/aniketljoshi/aitap/cmd/aitap@latest`
 

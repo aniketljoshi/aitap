@@ -1,7 +1,9 @@
-# Short VHS tape — produces a tight ~12s GIF for social media.
+# Short VHS tape - produces a tight GIF for social media.
 #
 # Usage:  vhs demo-short.tape
 # Output: demo-short.gif
+#
+# This tape runs from a fresh checkout and does not require a prebuilt binary.
 
 Output demo-short.gif
 
@@ -16,19 +18,19 @@ Set WindowBarSize 40
 Set CursorBlink false
 Set PlaybackSpeed 1
 
-# Start demo mode (pre-built binary assumed)
-Type "aitap --demo"
+# Start demo mode directly.
+Type "go run ./cmd/aitap --demo"
 Enter
 
-# Wait for all 5 calls to stream in
-Sleep 12s
+# Wait for the sample calls to stream in.
+Sleep 11s
 
-# Expand the first call
+# Expand the first call.
 Type "g"
 Sleep 300ms
 Enter
 Sleep 3s
 
-# Quit for clean exit
+# Quit cleanly.
 Type "q"
 Sleep 500ms
