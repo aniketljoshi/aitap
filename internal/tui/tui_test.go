@@ -7,7 +7,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"github.com/aniketjoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/model"
 )
 
 func TestViewEmptyState(t *testing.T) {

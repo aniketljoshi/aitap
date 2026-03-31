@@ -3,7 +3,7 @@ package provider
 import (
 	"strings"
 
-	"github.com/aniketjoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/model"
 )
 
 // DetectProvider identifies the LLM provider from the request host.

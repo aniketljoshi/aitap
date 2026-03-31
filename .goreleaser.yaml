@@ -29,8 +29,8 @@ brews:
   - repository:
       owner: aniketjoshi
       name: homebrew-tap
-    homepage: "https://github.com/aniketjoshi/aitap"
-    description: "mitmproxy for LLMs, but pleasant"
+    homepage: "https://github.com/aniketljoshi/aitap"
+    description: "Local-first LLM traffic inspector with a terminal UI"
     license: "MIT"
 
 checksum:

@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aniketjoshi/aitap/internal/model"
-	"github.com/aniketjoshi/aitap/internal/parser"
-	"github.com/aniketjoshi/aitap/internal/provider"
+	"github.com/aniketljoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/parser"
+	"github.com/aniketljoshi/aitap/internal/provider"
 )
 
 // providerUpstream maps a provider prefix path to its real HTTPS upstream.

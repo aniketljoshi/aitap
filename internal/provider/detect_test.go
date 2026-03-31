@@ -3,7 +3,7 @@ package provider
 import (
 	"testing"
 
-	"github.com/aniketjoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/model"
 )
 
 func TestDetectProvider(t *testing.T) {

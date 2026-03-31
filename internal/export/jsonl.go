@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/aniketjoshi/aitap/internal/model"
-	"github.com/aniketjoshi/aitap/internal/redact"
+	"github.com/aniketljoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/redact"
 )
 
 // ToJSONL writes all session calls to a JSONL file.

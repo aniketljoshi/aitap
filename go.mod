@@ -1,4 +1,4 @@
-module github.com/aniketjoshi/aitap
+module github.com/aniketljoshi/aitap
 
 go 1.22
 

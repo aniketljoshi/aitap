@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/aniketjoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/model"
 )
 
 // ParseSSEChunks processes accumulated SSE data chunks from a streaming response

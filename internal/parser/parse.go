@@ -3,8 +3,8 @@ package parser
 import (
 	"encoding/json"
 
-	"github.com/aniketjoshi/aitap/internal/model"
-	"github.com/aniketjoshi/aitap/internal/provider"
+	"github.com/aniketljoshi/aitap/internal/model"
+	"github.com/aniketljoshi/aitap/internal/provider"
 )
 
 // ParseRequest extracts model and messages from a request body.
