@@ -27,8 +27,10 @@ archives:
 
 brews:
   - repository:
-      owner: aniketjoshi
+      owner: aniketljoshi
       name: homebrew-tap
+    directory: Formula
+    skip_upload: true
     homepage: "https://github.com/aniketljoshi/aitap"
     description: "Local-first LLM traffic inspector with a terminal UI"
     license: "MIT"
