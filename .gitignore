@@ -7,9 +7,9 @@ dist/
 .claude
 
 # VHS output (generated, not committed — attach to releases/README manually)
-demo.gif
-demo.webm
-demo-short.gif
+/demo.gif
+/demo.webm
+/demo-short.gif
 
 # Editor/IDE
 .vscode/
