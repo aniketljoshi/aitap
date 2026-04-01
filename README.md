@@ -20,6 +20,14 @@
     &middot;
     <a href="CONTRIBUTING.md">Contributing</a>
   </p>
+
+  <p>
+    <a href="https://github.com/aniketljoshi/aitap/actions/workflows/ci.yml"><img src="https://github.com/aniketljoshi/aitap/actions/workflows/ci.yml/badge.svg" alt="CI status" /></a>
+    <a href="https://github.com/aniketljoshi/aitap/releases"><img src="https://img.shields.io/github/v/release/aniketljoshi/aitap" alt="Latest release" /></a>
+    <a href="https://go.dev/"><img src="https://img.shields.io/github/go-mod/go-version/aniketljoshi/aitap" alt="Go version" /></a>
+    <a href="https://goreportcard.com/report/github.com/aniketljoshi/aitap"><img src="https://goreportcard.com/badge/github.com/aniketljoshi/aitap" alt="Go Report Card" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/aniketljoshi/aitap" alt="License: MIT" /></a>
+  </p>
 </div>
 
 > aitap is for the moment when your agent is "doing something weird" and logs are not enough.
@@ -61,6 +69,15 @@ aitap
 ```
 
 By default, aitap listens on `:9119`.
+
+## What Makes It Different
+
+| Instead of this | aitap does this |
+| --- | --- |
+| Full observability platform setup | Start one local binary and inspect traffic now |
+| SDK-specific logging | Works at the HTTP layer across providers |
+| MITM certificate dance | Uses a cleaner forward-proxy path for local development |
+| Post-hoc JSON dumps | Gives you a live terminal timeline while calls stream |
 
 ## Traffic Modes
 
@@ -154,15 +171,6 @@ aitap --filter openrouter
 aitap --filter ollama
 aitap --version
 ```
-
-## What Makes It Different
-
-| Instead of this | aitap does this |
-| --- | --- |
-| Full observability platform setup | Start one local binary and inspect traffic now |
-| SDK-specific logging | Works at the HTTP layer across providers |
-| MITM certificate dance | Uses a cleaner forward-proxy path for local development |
-| Post-hoc JSON dumps | Gives you a live terminal timeline while calls stream |
 
 ## Project Map
 
