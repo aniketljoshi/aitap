@@ -25,6 +25,10 @@
 > aitap is for the moment when your agent is "doing something weird" and logs are not enough.
 > Put it between your app and the model provider, then inspect every call as it happens.
 
+<p align="center">
+  <img src="docs/assets/demo.gif" alt="aitap terminal demo" width="100%" />
+</p>
+
 ## Why aitap
 
 | What you get | Why it matters |
